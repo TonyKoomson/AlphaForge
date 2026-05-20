@@ -1,0 +1,68 @@
+{
+  "id": "b4a2e9cf",
+  "type": "experiment",
+  "title": "RSI oversold dips within a bull trend offer high-probability bounce entries",
+  "tags": [
+    "rsi_14",
+    "sma_50_above_200",
+    "bb_width",
+    "vol_21d",
+    "mom_12_1"
+  ],
+  "metrics": {
+    "sharpe": 0.581,
+    "ann_return": 0.0,
+    "max_dd": 0.0,
+    "oos_sharpe": 0.581
+  },
+  "session": "20260518_170911",
+  "timestamp": "2026-05-18T17:09:39.516638+00:00",
+  "body": {
+    "hypothesis": "RSI oversold dips within a bull trend offer high-probability bounce entries",
+    "config": {
+      "hypothesis": "RSI oversold dips within a bull trend offer high-probability bounce entries",
+      "ticker": "SPY",
+      "features": [
+        "rsi_14",
+        "sma_50_above_200",
+        "bb_width",
+        "vol_21d",
+        "mom_12_1"
+      ],
+      "model_params": {
+        "n_estimators": 120,
+        "max_depth": 3,
+        "learning_rate": 0.08,
+        "subsample": 0.9
+      },
+      "signal_threshold": 0.57,
+      "start": "2018-01-01",
+      "end": "2023-12-31",
+      "expected_edge": "Oversold readings within uptrend have historically offered limited downside and strong mean-reversion upside",
+      "_bandit_arm": "trend_conservative"
+    },
+    "results": {
+      "ticker": "SPY",
+      "period": "2018-01-01 to 2023-12-31",
+      "sharpe": 0.581,
+      "ann_return": 0.954,
+      "max_dd": -33.717,
+      "n_trades": 1,
+      "win_rate": 1.0,
+      "cost_drag": 0.001,
+      "signal_threshold": 0.57,
+      "n_bars": 1509,
+      "n_features": 85,
+      "sharpe_t_stat": 1.4217,
+      "sharpe_p_value": 0.0222,
+      "n_years": 5.99,
+      "significant_at_05": true,
+      "psr": 0.9778,
+      "dsr": 0.9,
+      "dsr_sr_star": 0.2105,
+      "dsr_n_trials": 2,
+      "dsr_verdict": "marginal_after_correction"
+    },
+    "verdict": "MODERATE"
+  }
+}

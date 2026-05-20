@@ -1,0 +1,50 @@
+{
+  "id": "7551975e",
+  "type": "experiment",
+  "title": "RSI mean-reversion within bull regime \u2014 oversold dips in uptrend have favorable risk/reward",
+  "tags": [
+    "rsi_14",
+    "sma_50_above_200",
+    "bb_width",
+    "vol_21d",
+    "mom_12_1"
+  ],
+  "metrics": {
+    "sharpe": 0.0,
+    "ann_return": 0.0,
+    "max_dd": 0.0,
+    "oos_sharpe": 0.0
+  },
+  "session": "20260517_022412",
+  "timestamp": "2026-05-17T02:24:37.814886",
+  "body": {
+    "hypothesis": "RSI mean-reversion within bull regime \u2014 oversold dips in uptrend have favorable risk/reward",
+    "config": {
+      "hypothesis": "RSI mean-reversion within bull regime \u2014 oversold dips in uptrend have favorable risk/reward",
+      "ticker": "SPY",
+      "features": [
+        "rsi_14",
+        "sma_50_above_200",
+        "bb_width",
+        "vol_21d",
+        "mom_12_1"
+      ],
+      "model_params": {
+        "n_estimators": 120,
+        "max_depth": 3,
+        "learning_rate": 0.08,
+        "subsample": 0.9
+      },
+      "signal_threshold": 0.57,
+      "start": "2018-01-01",
+      "end": "2023-12-31",
+      "expected_edge": "Oversold RSI in uptrending market historically offers asymmetric risk/reward \u2014 limited downside, mean-reversion upside",
+      "_bandit_arm": "deep_regularized"
+    },
+    "results": {
+      "error": "'>=' not supported between instances of 'tuple' and 'float'",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Administrator\\Documents\\AlphaTrading\\AlphaForge\\harness\\tools\\executor.py\", line 147, in _tool_run_backtest\n    sigs[probas >= signal_threshold] = 1\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: '>=' not supported between instances of 'tuple' and 'float'\n"
+    },
+    "verdict": "WEAK"
+  }
+}

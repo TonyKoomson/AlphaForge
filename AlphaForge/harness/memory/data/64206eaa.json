@@ -1,0 +1,59 @@
+{
+  "id": "64206eaa",
+  "type": "experiment",
+  "title": "Regime-adaptive entry: only trade when both trend (SMA50>SMA200) and vol regime (vol_21d < 25th pct) align",
+  "tags": [
+    "sma_50_above_200",
+    "sma_50_dist",
+    "vol_21d",
+    "mom_12_1",
+    "dollar_volume"
+  ],
+  "metrics": {
+    "sharpe": 0.581,
+    "ann_return": 0.0,
+    "max_dd": 0.0,
+    "oos_sharpe": 0.581
+  },
+  "session": "20260517_022632",
+  "timestamp": "2026-05-17T02:27:20.850642",
+  "body": {
+    "hypothesis": "Regime-adaptive entry: only trade when both trend (SMA50>SMA200) and vol regime (vol_21d < 25th pct) align",
+    "config": {
+      "hypothesis": "Regime-adaptive entry: only trade when both trend (SMA50>SMA200) and vol regime (vol_21d < 25th pct) align",
+      "ticker": "SPY",
+      "features": [
+        "sma_50_above_200",
+        "sma_50_dist",
+        "vol_21d",
+        "mom_12_1",
+        "dollar_volume"
+      ],
+      "model_params": {
+        "n_estimators": 200,
+        "max_depth": 4,
+        "learning_rate": 0.04,
+        "reg_lambda": 1.5
+      },
+      "signal_threshold": 0.55,
+      "start": "2018-01-01",
+      "end": "2023-12-31",
+      "expected_edge": "Combining trend + vol regime filter eliminates high-vol bear market whipsaw, preserving signal quality in favourable regimes",
+      "_bandit_arm": "mean_reversion_shallow"
+    },
+    "results": {
+      "ticker": "SPY",
+      "period": "2018-01-01 to 2023-12-31",
+      "sharpe": 0.581,
+      "ann_return": 0.954,
+      "max_dd": -33.717,
+      "n_trades": 1,
+      "win_rate": 1.0,
+      "cost_drag": 0.001,
+      "signal_threshold": 0.55,
+      "n_bars": 1509,
+      "n_features": 85
+    },
+    "verdict": "MODERATE"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "id": "5e525f73",
+  "type": "experiment",
+  "title": "Regime-adaptive entry: only trade when both trend (SMA50>SMA200) and vol regime (vol_21d < 25th pct) align",
+  "tags": [
+    "sma_50_above_200",
+    "sma_50_dist",
+    "vol_21d",
+    "mom_12_1",
+    "dollar_volume"
+  ],
+  "metrics": {
+    "sharpe": 0.0,
+    "ann_return": 0.0,
+    "max_dd": 0.0,
+    "oos_sharpe": 0.0
+  },
+  "session": "20260517_022117",
+  "timestamp": "2026-05-17T02:21:55.671057",
+  "body": {
+    "hypothesis": "Regime-adaptive entry: only trade when both trend (SMA50>SMA200) and vol regime (vol_21d < 25th pct) align",
+    "config": {
+      "hypothesis": "Regime-adaptive entry: only trade when both trend (SMA50>SMA200) and vol regime (vol_21d < 25th pct) align",
+      "ticker": "SPY",
+      "features": [
+        "sma_50_above_200",
+        "sma_50_dist",
+        "vol_21d",
+        "mom_12_1",
+        "dollar_volume"
+      ],
+      "model_params": {
+        "n_estimators": 200,
+        "max_depth": 4,
+        "learning_rate": 0.04,
+        "reg_lambda": 1.5
+      },
+      "signal_threshold": 0.55,
+      "start": "2018-01-01",
+      "end": "2023-12-31",
+      "expected_edge": "Combining trend + vol regime filter eliminates high-vol bear market whipsaw, preserving signal quality in favourable regimes",
+      "_bandit_arm": "regime_adaptive"
+    },
+    "results": {
+      "error": "BacktestEngine.run() got an unexpected keyword argument 'features_df'. Did you mean 'features'?",
+      "traceback": "File \"C:\\Users\\Administrator\\Documents\\AlphaTrading\\AlphaForge\\harness\\tools\\executor.py\", line 87, in execute\n    result = handler(**tool_input)\n  File \"C:\\Users\\Administrator\\Documents\\AlphaTrading\\AlphaForge\\harness\\tools\\executor.py\", line 125, in _tool_run_backtest\n    results = engine.run(\n        features_df=feats,\n    ...<3 lines>...\n        signal_threshold=signal_threshold,\n    )\nTypeError: BacktestEngine.run() got an unexpected keyword argument 'features_df'. Did you mean 'features'?\n"
+    },
+    "verdict": "WEAK"
+  }
+}

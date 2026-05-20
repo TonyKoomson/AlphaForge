@@ -1,0 +1,68 @@
+{
+  "id": "12739646",
+  "type": "experiment",
+  "title": "12-month momentum with SMA50/200 regime filter outperforms buy-and-hold by selecting only trend-aligned entries",
+  "tags": [
+    "mom_12_1",
+    "mom_5d",
+    "sma_50_above_200",
+    "channel_pos_52w",
+    "vol_21d"
+  ],
+  "metrics": {
+    "sharpe": 0.581,
+    "ann_return": 0.0,
+    "max_dd": 0.0,
+    "oos_sharpe": 0.581
+  },
+  "session": "20260517_212413",
+  "timestamp": "2026-05-17T21:24:30.058428+00:00",
+  "body": {
+    "hypothesis": "12-month momentum with SMA50/200 regime filter outperforms buy-and-hold by selecting only trend-aligned entries",
+    "config": {
+      "hypothesis": "12-month momentum with SMA50/200 regime filter outperforms buy-and-hold by selecting only trend-aligned entries",
+      "ticker": "SPY",
+      "features": [
+        "mom_12_1",
+        "mom_5d",
+        "sma_50_above_200",
+        "channel_pos_52w",
+        "vol_21d"
+      ],
+      "model_params": {
+        "n_estimators": 150,
+        "max_depth": 4,
+        "learning_rate": 0.05,
+        "subsample": 0.8
+      },
+      "signal_threshold": 0.55,
+      "start": "2018-01-01",
+      "end": "2023-12-31",
+      "expected_edge": "Trend persistence over 12-month horizon combined with regime filter reduces false entries during bearish SMA crossovers",
+      "_bandit_arm": "volatility_breakout"
+    },
+    "results": {
+      "ticker": "SPY",
+      "period": "2018-01-01 to 2023-12-31",
+      "sharpe": 0.581,
+      "ann_return": 0.954,
+      "max_dd": -33.717,
+      "n_trades": 1,
+      "win_rate": 1.0,
+      "cost_drag": 0.001,
+      "signal_threshold": 0.55,
+      "n_bars": 1509,
+      "n_features": 85,
+      "sharpe_t_stat": 1.4217,
+      "sharpe_p_value": 0.0222,
+      "n_years": 5.99,
+      "significant_at_05": true,
+      "psr": 0.9778,
+      "dsr": 0.9,
+      "dsr_sr_star": 0.2105,
+      "dsr_n_trials": 1,
+      "dsr_verdict": "marginal_after_correction"
+    },
+    "verdict": "MODERATE"
+  }
+}

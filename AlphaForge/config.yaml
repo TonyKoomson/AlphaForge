@@ -1,0 +1,389 @@
+# =============================================================================
+# Alpha Forge — Configuration
+# ALL settings govern simulation and backtesting only. No live trading.
+# =============================================================================
+
+# --- Data Ingestion ---
+data:
+  default_ticker: "SPY"
+  start_date: "2015-01-01"   # extended: adds 2015 China crash, 2016 Brexit/election volatility
+  end_date: "2024-01-01"
+  frequency: "1d"                   # 1d, 1h, 15m
+  source: "yfinance"                # yfinance | ccxt
+  cache_dir: "data/raw"
+  processed_dir: "data/processed"
+
+# --- Feature Engineering ---
+features:
+  lookback_window: 20               # Rolling window for momentum features
+  volatility_window: 21             # Rolling window for realised vol
+  rsi_period: 14
+  macd_fast: 12
+  macd_slow: 26
+  macd_signal: 9
+  bb_period: 20
+  bb_std: 2.0
+  atr_period: 14
+
+# --- Model Training ---
+model:
+  algorithm: "xgboost"              # xgboost | random_forest | logistic
+  target_horizon: 5                 # Forward return horizon (bars)
+  train_test_split: 0.80
+  n_estimators: 500
+  max_depth: 4
+  learning_rate: 0.03
+  subsample: 0.8
+  colsample_bytree: 0.8
+  early_stopping_rounds: 30        # Stop when eval loss stagnates (was 50)
+  random_state: 3141
+  artifacts_dir: "models/artifacts"
+  max_train_features: 85            # Empirically optimal — do not reduce, causes failures
+  ensemble_size: 5                  # XGB members (reduced to 2 in fast_mode)
+
+  # Walk-forward CV config (key speed lever)
+  # Standard: 18/3 → ~14 folds on 6yr data (was 6/1 → ~64 folds — 4.5x slower)
+  # Fast mode: 24/6 → ~6 folds
+  cv_train_months: 18               # Training window per fold (months)
+  cv_test_months: 3                 # Test window per fold (months)
+  cv_stride_months: 6               # Fold advance step; 0 = same as cv_test_months
+  #                                 # stride=6 on 6yr data → ~9 folds instead of ~25 (3x fewer)
+
+  # Fast mode: activate with --fast flag or ALPHAFORGE_FAST_MODE=1 env var
+  # Uses: cv_train=24, cv_test=6, ensemble=2, n_estimators=200, no RF/ExtraTrees
+  # Speedup vs standard: ~10-15x — ideal for universe-scale training and sweeps
+  fast_mode: false
+  confidence_threshold: 0.20         # Min confidence score to generate a trade signal (0-1)
+
+  # GPU acceleration: use device='gpu'/'cuda' for large training sets.
+  # "auto" = enable GPU when n_train_rows >= gpu_min_rows; "true" = always; "false" = never.
+  # AMD Radeon RX 9060 XT: LightGBM GPU ~1.7x faster at 100k rows; XGBoost ~1.1x.
+  use_gpu: "auto"
+  gpu_min_rows: 20000   # minimum training rows to switch to GPU (avoids overhead for small sets)
+
+# --- Backtesting ---
+backtest:
+  initial_capital: 100_000.0       # Simulated starting capital (USD)
+  commission_pct: 0.001             # 0.1% per-side commission
+  slippage_pct: 0.0005              # 0.05% estimated slippage
+  spread_pct: 0.0002                # Bid-ask spread estimate
+  signal_threshold: 0.65            # Fallback threshold when regime unknown
+  min_holding_bars: 5               # Minimum bars to hold a position before reversal/exit
+  signal_confirm_bars: 2            # Consecutive same-direction bars required to change position
+  max_open_positions: 5
+  apply_risk_management: true       # Convert raw signals into risk-sized positions
+  trend_filter_200ma: false         # Regime thresholds handle direction bias; 200-MA lags
+  # Regime-conditional thresholds: long/short entry bars vary by market regime.
+  # Bull: strongly long-biased (low bar for longs). Bear: modestly short-biased.
+  # Kept intentionally asymmetric: bear adjustment is mild to avoid fighting the
+  # lagged regime detector (252-bar trailing return) at regime transition points.
+  regime_thresholds:
+    bull:     {long: 0.52, short: 0.85}  # upper-90 ensemble: lower bar in confirmed bull
+    sideways: {long: 0.62, short: 0.38}  # upper-90 mean=0.548; 0.62 ≈ 1 SD above mean
+    bear:     {long: 0.75, short: 0.45}  # require strong consensus to go long in bear
+    high_vol: {long: 0.65, short: 0.42}  # elevated threshold in high-vol regime
+    unknown:  {long: 0.62, short: 0.40}  # fallback matches sideways
+
+# --- Risk & Position Sizing ---
+risk:
+  target_annual_volatility: 0.15   # Volatility targeting: scale to 15% ann. vol
+  fixed_risk_pct: 0.01             # Fixed-risk sizing: risk 1% equity per trade
+  kelly_fraction: 0.25             # Fractional Kelly (25% of full Kelly)
+  max_leverage: 30.0               # Absolute leverage cap (aligned with max_position)
+  daily_loss_limit_pct: 0.03       # Halt/flatten after 3% daily strategy loss
+  min_confidence_threshold: 0.60   # Go flat below this model confidence
+  max_position_size_per_asset: 1.0 # Normalized cap per asset (|position| <= 1)
+  max_portfolio_drawdown: 0.25     # Halt trading if drawdown exceeds 25%
+  stop_loss_pct: 0.08              # 8% hard stop-loss (wider to survive intraday noise)
+  take_profit_pct: 0.25            # effectively disabled — let trailing stop manage exits
+  trailing_stop_activate_pct: 0.03        # Activate trailing stop once position gains ≥ 3%
+  trailing_stop_trail_pct: 0.07           # Default trail (fallback for unknown regime)
+  trailing_stop_trail_bull_pct: 0.10      # Bull: wide trail — ride multi-week uptrends
+  trailing_stop_trail_sideways_pct: 0.07  # Sideways: moderate trail
+  trailing_stop_trail_bear_pct: 0.05      # Bear: tight trail — lock gains fast
+  trailing_stop_trail_highvol_pct: 0.07   # High-vol: moderate trail
+
+# --- Strategy Capacity Estimation ---
+capacity:
+  adv_usd: 50_000_000       # Average daily dollar volume; 50M = mid-cap default (SPY ~30B)
+  impact_exponent: 0.60     # Market impact exponent (Grinold & Kahn: 0.5–0.6)
+  base_slippage: 0.0005     # Per-side slippage at backtest capital
+  max_adv_fraction: 0.05    # Hard cap: strategy size ≤ 5% of ADV
+
+# --- Walk-Forward Validation ---
+validation:
+  n_splits: 5                       # Number of walk-forward folds
+  purge_gap_bars: 10               # Bars to purge between train/test to prevent leakage
+  embargo_pct: 0.01                 # Embargo: skip 1% of the dataset around fold edges
+  min_train_size: 252               # Minimum 1 year of training data per fold
+  metrics_output_dir: "reports"
+  benchmark_ticker: "SPY"
+
+# --- Regime Analysis ---
+regimes:
+  bull_threshold: 0.10             # Trailing 252-bar return > 10% = bull
+  bear_threshold: -0.10            # Trailing 252-bar return < -10% = bear
+  vol_high_threshold: 0.25         # Ann. vol > 25% = high-vol regime
+  vol_low_threshold: 0.10          # Ann. vol < 10% = low-vol regime
+
+# --- Paper Trading Simulation ---
+paper_trading:
+  initial_capital: 100_000.0
+  portfolio_tickers: ["SPY", "QQQ", "IWM", "GLD", "TLT"]
+  update_frequency_seconds: 60     # How often to "tick" in simulation
+  max_simulation_days: 90          # Run simulation for up to 90 calendar days
+  log_dir: "logs/paper_trading"
+  realistic_fill: true             # Apply slippage + commission on every fill
+  retrain_rollback_tolerance: 0.15 # Reject new model if OOS Sharpe regresses by more than this
+  online_rollback_tolerance:  0.20 # Roll back online update if OOS Sharpe regresses by more than this
+
+# --- Audit Ledger ---
+audit:
+  db_path: "audit/trade_ledger.db"
+  export_dir: "audit/reports"
+  git_commit_daily: false
+
+# --- Monitoring & Drift Detection ---
+monitoring:
+  feature_drift_threshold: 0.25   # PSI > 0.25 triggers a legacy drift alert (matches drift_handler warn level)
+  prediction_drift_threshold: 0.50 # KL divergence threshold for prediction drift (legacy; drift_handler governs primary logic)
+  alert_drawdown_pct: 0.10        # Alert if paper trading drawdown exceeds 10%
+  dashboard_refresh_seconds: 30
+  log_level: "INFO"                 # DEBUG | INFO | WARNING | ERROR
+
+# --- Drift Handler (replaces raw DriftDetector for severity + auto-retraining) ---
+drift_handler:
+  # Financial-market-calibrated PSI thresholds.
+  # Normal intra-year regime changes (bull→correction) produce PSI 2–8.
+  # The old threshold of 0.05–1.0 was calibrated for credit-risk scorecards,
+  # not equity time-series. Use these higher values for financial features.
+  # Calibrated from empirical SPY 2023 PSI measurement:
+  #   same-distribution noise (win=60): mean=0.74, max=4.2
+  #   genuine regime shift (correction): mean=1.47, max=7.5
+  # Thresholds are set above the noise ceiling so only real drift triggers.
+  psi_watch_threshold:   1.00    # Above same-dist mean (0.74) — minor shift
+  psi_warn_threshold:    2.50    # Above same-dist mean+2σ — notable shift
+  psi_retrain_threshold: 9.00    # Raised from 4.5 — avoid mid-simulation retrains that disrupt benchmark
+  psi_halt_threshold:    15.00   # Extreme drift only (raised: sector ETF features inflate PSI during regime shifts)
+  kl_warn_threshold:     1.00
+  kl_retrain_threshold:  3.00
+  retrain_cooldown_bars: 30      # Min bars between retrains (~6 weeks)
+  persistent_drift_bars: 3       # Must hit RETRAIN level 3 consecutive evals before triggering
+  rolling_window:        60      # 60 bars needed for stable PSI estimate (was 25 — too noisy)
+  stability_window:      10      # Evaluations to assess feature stability
+  max_unstable_frac:     0.30    # Drop feature if >30% windows drifted
+  min_history:           120     # Min bars before any retrain allowed
+
+# --- Statistical Process Control ---
+spc:
+  ewma_lambda:      0.10   # Smoothing constant (lower = more sensitive to drift)
+  k_sigma:          3.0    # Control limit multiplier
+  cusum_k:          0.50   # CUSUM allowance
+  cusum_h:          5.0    # CUSUM decision interval
+
+# --- Online Learning ---
+online_learning:
+  strategy:      "ewm_reweight"  # ewm_reweight | replace_weak | retrain_recent
+  ewm_halflife:  63              # Bars; recent data gets 2× weight vs 63 bars ago
+  recent_window: 126             # Bars of recent data for replace_weak/retrain_recent
+  min_samples:   100             # Min rows to attempt online update
+
+
+# --- AlphaForge v2.0 — Multi-Agent Research Orchestrator ---
+agent_manager:
+  n_cycles:               5
+  tickers:               ["SPY"]
+  output_dir:            "research/results/v2"
+  stage1_generations:    3
+  stage2_generations:    10
+  early_stop_threshold:  0.75
+  stage2_trigger_threshold: 0.45
+  warmup_cycles:         3
+  improvement_threshold: 0.05
+  total_budget_units:    100.0
+  light_novelty_max:     0.40
+  heavy_novelty_min:     0.75
+  heavy_budget_min:      0.40
+  kb_path:               "research/kb/knowledge_base.json"
+  kb_max_entries:        2000
+  kb_search_k:           5
+  rl_state_dim:          9
+  rl_max_agents:         10
+  rl_buffer_size:        512
+  rl_gamma:              0.97
+  rl_lr:                 0.0003
+  rl_clip_eps:           0.20
+  rl_policy_path:        "research/kb/rl_policy.npz"
+  rl_update_every_n_cycles: 1
+  pm_success_sharpe:     1.0
+  pm_partial_sharpe:     0.5
+  paper_output_dir:      "research/papers"
+  paper_new_best_pct:    0.10
+  population_size:       30
+  n_parallel:            4
+  elite_frac:            0.20
+  mutation_rate:         0.15
+  promote_sharpe:        0.60
+  adversarial_enabled:   true
+  adversarial_stress_periods: ["covid_crash", "2022_bear_market"]
+  max_explored_ideas:    10000
+  use_llm:               false
+
+# --- Dynamic Position Sizing ---
+dynamic_position_sizing:
+  method: "regime"
+  target_vol: 0.18            # empirically optimal (0.25 triggers drawdown control too often)
+  kelly_fraction: 0.30        # empirically optimal (0.35 triggers drawdown control more)
+  max_position: 30.00        # sweep optimal; cliff edge at 31+ (tested 2026-05-14)
+  max_portfolio_risk: 0.02
+  drawdown_derisking: true
+  dd_caution: 0.05
+  dd_derisked: 0.10
+  dd_halt: 0.20
+  min_confidence: 0.50        # let regime thresholds control entry
+  regime_multipliers:
+    bull: 1.30                # amplify in bull: allows closer to max_position
+    bear: 1.00                # full position sizing for shorts in confirmed bear markets
+    sideways: 0.90            # near-full in sideways for more exposure
+    high_vol: 0.70            # moderate in high-vol — volatile periods are unpredictable
+    unknown: 0.80
+
+# --- Portfolio Construction ---
+portfolio_construction:
+  method: "risk_parity"
+  max_weight: 0.40
+  max_sector_exposure: 0.60
+  target_portfolio_vol: 0.10
+
+# --- Drawdown Control ---
+drawdown_control:
+  caution_threshold: 0.05
+  derisked_threshold: 0.10
+  halt_threshold: 0.20
+  recovery_bars: 3
+
+# --- Data Quality ---
+data_quality:
+  zscore_threshold: 4.0
+  iqr_multiplier: 3.0
+  max_missing_pct: 0.05
+  imputation: "ffill"
+
+# --- Kill Switch ---
+kill_switch:
+  max_position_size: 30.00   # aligned with dynamic_position_sizing
+  max_portfolio_drawdown: 0.20
+  max_daily_loss_pct: 0.03
+  max_leverage: 30.0
+  drift_score_limit: 0.30
+  log_path: "monitoring/kill_switch.log"
+
+# --- Tail Risk ---
+tail_risk:
+  vol_zscore_caution: 2.0
+  vol_zscore_extreme: 3.5
+  tail_prob_caution: 0.05
+  tail_prob_extreme: 0.01
+  lookback_vol: 21
+  lookback_tail: 252
+
+# --- Version Control & Rollback ---
+versioning:
+  registry_path: "research/kb/version_registry.json"
+  snapshots_dir: "research/kb/snapshots"
+  max_versions_per_component: 20
+
+# --- Pre-Trade Risk Orchestration ---
+pretrade_risk:
+  max_position_size: 30.00   # must match dynamic_position_sizing.max_position
+  max_sector_exposure: 0.40
+  cvar_limit: 0.03
+  min_cash_reserve: 0.05
+  max_leverage: 30.0
+  max_portfolio_risk: 0.02
+  max_daily_loss_pct: 0.03
+  max_drawdown_pct: 0.20
+  vix_halt_threshold: 40.0
+  correlation_gate: 0.85
+  atr_multiplier: 2.0
+  min_stop_loss_pct: 0.02
+  track_caps:
+    defensive: 0.30
+    aggressive: 0.25
+    structural: 0.30
+    sprint: 0.15
+
+# --- Robustness Gates ---
+robustness_gates:
+  min_dsr: 0.95
+  min_t_stat: 3.0
+  max_param_cv: 0.50
+  min_sharpe_3x_slippage: 0.30
+  min_trl_confidence: 0.95
+  min_trials: 10
+  require_all: false
+
+# --- Parallel Research Tracks ---
+parallel_tracks:
+  tracks:
+    defensive:
+      max_position: 0.10
+      max_drawdown: 0.05
+      holding_period_bars: 21
+      target_sharpe: 1.0
+      risk_budget_pct: 0.30
+      objective: "capital_preservation"
+      allowed_regimes: ["bull", "sideways"]
+      min_confidence: 0.65
+      momentum_threshold: 0.30
+    aggressive:
+      max_position: 0.30
+      max_drawdown: 0.15
+      holding_period_bars: 5
+      target_sharpe: 1.5
+      risk_budget_pct: 0.25
+      objective: "max_return"
+      allowed_regimes: ["bull"]
+      min_confidence: 0.60
+      momentum_threshold: 0.60
+    structural:
+      max_position: 0.20
+      max_drawdown: 0.10
+      holding_period_bars: 63
+      target_sharpe: 1.2
+      risk_budget_pct: 0.30
+      objective: "sharpe_maximization"
+      allowed_regimes: []
+      min_confidence: 0.62
+      momentum_threshold: 0.40
+    sprint:
+      max_position: 0.15
+      max_drawdown: 0.08
+      holding_period_bars: 2
+      target_sharpe: 2.0
+      risk_budget_pct: 0.15
+      objective: "quick_alpha"
+      allowed_regimes: ["bull", "sideways"]
+      min_confidence: 0.70
+      momentum_threshold: 0.70
+
+# --- HMM Regime Detection ---
+hmm_regime:
+  n_states: 3
+  max_iter: 100
+  tol: 1.0e-4
+  min_history: 60
+  refit_interval_bars: 63
+
+# --- Tamper-Evident Audit Ledger ---
+audit:
+  db_path: "audit/trade_ledger.db"
+  use_duckdb: false
+  git_commit_daily: false
+  export_dir: "audit/reports"
+  max_records_in_memory: 10000
+
+# --- XAI Explainer ---
+xai:
+  top_k: 10
+  use_shap: false    # set true if shap is installed

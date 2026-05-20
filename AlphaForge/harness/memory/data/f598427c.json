@@ -1,0 +1,30 @@
+{
+  "id": "f598427c",
+  "type": "experiment",
+  "title": "unrelated test",
+  "tags": [
+    "atr_14",
+    "dollar_volume"
+  ],
+  "metrics": {
+    "sharpe": 0.3,
+    "ann_return": 0.0,
+    "max_dd": 0.0,
+    "oos_sharpe": 0.3
+  },
+  "session": "20260517_023451",
+  "timestamp": "2026-05-17T02:34:51.845388",
+  "body": {
+    "hypothesis": "unrelated test",
+    "config": {
+      "features": [
+        "atr_14",
+        "dollar_volume"
+      ]
+    },
+    "results": {
+      "sharpe": 0.3
+    },
+    "verdict": "WEAK"
+  }
+}

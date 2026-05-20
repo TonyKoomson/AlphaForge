@@ -1,0 +1,68 @@
+{
+  "id": "6670fafa",
+  "type": "experiment",
+  "title": "Selective entry when trend and low-volatility conditions both align produces cleaner signals",
+  "tags": [
+    "sma_50_above_200",
+    "sma_50_dist",
+    "vol_21d",
+    "mom_12_1",
+    "dollar_volume"
+  ],
+  "metrics": {
+    "sharpe": 0.581,
+    "ann_return": 0.0,
+    "max_dd": 0.0,
+    "oos_sharpe": 0.581
+  },
+  "session": "20260518_170911",
+  "timestamp": "2026-05-18T17:09:52.560505+00:00",
+  "body": {
+    "hypothesis": "Selective entry when trend and low-volatility conditions both align produces cleaner signals",
+    "config": {
+      "hypothesis": "Selective entry when trend and low-volatility conditions both align produces cleaner signals",
+      "ticker": "SPY",
+      "features": [
+        "sma_50_above_200",
+        "sma_50_dist",
+        "vol_21d",
+        "mom_12_1",
+        "dollar_volume"
+      ],
+      "model_params": {
+        "n_estimators": 200,
+        "max_depth": 4,
+        "learning_rate": 0.04,
+        "reg_lambda": 1.5
+      },
+      "signal_threshold": 0.55,
+      "start": "2018-01-01",
+      "end": "2023-12-31",
+      "expected_edge": "Dual filter (trend + low volatility) eliminates most losing trades at the cost of fewer total trades",
+      "_bandit_arm": "volatility_breakout"
+    },
+    "results": {
+      "ticker": "SPY",
+      "period": "2018-01-01 to 2023-12-31",
+      "sharpe": 0.581,
+      "ann_return": 0.954,
+      "max_dd": -33.717,
+      "n_trades": 1,
+      "win_rate": 1.0,
+      "cost_drag": 0.001,
+      "signal_threshold": 0.55,
+      "n_bars": 1509,
+      "n_features": 85,
+      "sharpe_t_stat": 1.4217,
+      "sharpe_p_value": 0.0222,
+      "n_years": 5.99,
+      "significant_at_05": true,
+      "psr": 0.9778,
+      "dsr": 0.7925,
+      "dsr_sr_star": 0.3454,
+      "dsr_n_trials": 3,
+      "dsr_verdict": "below_multiple_testing_threshold"
+    },
+    "verdict": "MODERATE"
+  }
+}

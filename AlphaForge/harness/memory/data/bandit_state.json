@@ -1,0 +1,119 @@
+{
+  "total_trials": 8,
+  "arms": {
+    "momentum_medium": {
+      "n": 2,
+      "sum_reward": 1.162,
+      "sum_sq_reward": 0.6751219999999999,
+      "best": 0.581,
+      "last": 0.581
+    },
+    "mean_reversion_shallow": {
+      "n": 0,
+      "sum_reward": 0.0,
+      "sum_sq_reward": 0.0,
+      "best": -999.0,
+      "last": null
+    },
+    "regime_adaptive": {
+      "n": 1,
+      "sum_reward": 0.581,
+      "sum_sq_reward": 0.33756099999999994,
+      "best": 0.581,
+      "last": 0.581
+    },
+    "volume_liquidity": {
+      "n": 1,
+      "sum_reward": 0.581,
+      "sum_sq_reward": 0.33756099999999994,
+      "best": 0.581,
+      "last": 0.581
+    },
+    "deep_regularized": {
+      "n": 1,
+      "sum_reward": 0.581,
+      "sum_sq_reward": 0.33756099999999994,
+      "best": 0.581,
+      "last": 0.581
+    },
+    "trend_conservative": {
+      "n": 1,
+      "sum_reward": 0.581,
+      "sum_sq_reward": 0.33756099999999994,
+      "best": 0.581,
+      "last": 0.581
+    },
+    "quality_growth": {
+      "n": 1,
+      "sum_reward": 0.581,
+      "sum_sq_reward": 0.33756099999999994,
+      "best": 0.581,
+      "last": 0.581
+    },
+    "volatility_breakout": {
+      "n": 1,
+      "sum_reward": 0.581,
+      "sum_sq_reward": 0.33756099999999994,
+      "best": 0.581,
+      "last": 0.581
+    }
+  },
+  "history": [
+    {
+      "arm": "volume_liquidity",
+      "reward": 0.581,
+      "t": 1,
+      "ts": 1779114665,
+      "algo": "thompson"
+    },
+    {
+      "arm": "regime_adaptive",
+      "reward": 0.581,
+      "t": 2,
+      "ts": 1779114679,
+      "algo": "thompson"
+    },
+    {
+      "arm": "quality_growth",
+      "reward": 0.581,
+      "t": 3,
+      "ts": 1779124166,
+      "algo": "thompson"
+    },
+    {
+      "arm": "trend_conservative",
+      "reward": 0.581,
+      "t": 4,
+      "ts": 1779124179,
+      "algo": "thompson"
+    },
+    {
+      "arm": "volatility_breakout",
+      "reward": 0.581,
+      "t": 5,
+      "ts": 1779124192,
+      "algo": "thompson"
+    },
+    {
+      "arm": "deep_regularized",
+      "reward": 0.581,
+      "t": 6,
+      "ts": 1779124205,
+      "algo": "thompson"
+    },
+    {
+      "arm": "momentum_medium",
+      "reward": 0.581,
+      "t": 7,
+      "ts": 1779124218,
+      "algo": "thompson"
+    },
+    {
+      "arm": "momentum_medium",
+      "reward": 0.581,
+      "t": 8,
+      "ts": 1779124231,
+      "algo": "thompson"
+    }
+  ]
+}

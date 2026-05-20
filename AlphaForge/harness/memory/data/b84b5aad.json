@@ -1,0 +1,32 @@
+{
+  "id": "b84b5aad",
+  "type": "experiment",
+  "title": "exp 3",
+  "tags": [
+    "mom_12_1",
+    "sma_50_above_200",
+    "vol_21d"
+  ],
+  "metrics": {
+    "sharpe": 0.5,
+    "ann_return": 0.0,
+    "max_dd": 0.0,
+    "oos_sharpe": 0.5
+  },
+  "session": "20260517_023451",
+  "timestamp": "2026-05-17T02:34:51.859509",
+  "body": {
+    "hypothesis": "exp 3",
+    "config": {
+      "features": [
+        "mom_12_1",
+        "sma_50_above_200",
+        "vol_21d"
+      ]
+    },
+    "results": {
+      "sharpe": 0.5
+    },
+    "verdict": "MODERATE"
+  }
+}

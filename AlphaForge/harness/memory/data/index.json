@@ -1,0 +1,803 @@
+[
+  {
+    "id": "8b94f166",
+    "type": "experiment",
+    "title": "12-month momentum with SMA50/200 regime filter outperforms buy-and-hold by selecting only trend-aligned entries",
+    "tags": [
+      "mom_12_1",
+      "mom_5d",
+      "sma_50_above_200",
+      "channel_pos_52w",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.0,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.0
+    },
+    "session": "20260517_022117",
+    "timestamp": "2026-05-17T02:21:30.338474"
+  },
+  {
+    "id": "449aeb4b",
+    "type": "experiment",
+    "title": "RSI mean-reversion within bull regime \u2014 oversold dips in uptrend have favorable risk/reward",
+    "tags": [
+      "rsi_14",
+      "sma_50_above_200",
+      "bb_width",
+      "vol_21d",
+      "mom_12_1"
+    ],
+    "metrics": {
+      "sharpe": 0.0,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.0
+    },
+    "session": "20260517_022117",
+    "timestamp": "2026-05-17T02:21:42.968531"
+  },
+  {
+    "id": "5e525f73",
+    "type": "experiment",
+    "title": "Regime-adaptive entry: only trade when both trend (SMA50>SMA200) and vol regime (vol_21d < 25th pct) align",
+    "tags": [
+      "sma_50_above_200",
+      "sma_50_dist",
+      "vol_21d",
+      "mom_12_1",
+      "dollar_volume"
+    ],
+    "metrics": {
+      "sharpe": 0.0,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.0
+    },
+    "session": "20260517_022117",
+    "timestamp": "2026-05-17T02:21:55.671057"
+  },
+  {
+    "id": "9435c53a",
+    "type": "experiment",
+    "title": "12-month momentum with SMA50/200 regime filter outperforms buy-and-hold by selecting only trend-aligned entries",
+    "tags": [
+      "mom_12_1",
+      "mom_5d",
+      "sma_50_above_200",
+      "channel_pos_52w",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.0,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.0
+    },
+    "session": "20260517_022412",
+    "timestamp": "2026-05-17T02:24:25.498815"
+  },
+  {
+    "id": "7551975e",
+    "type": "experiment",
+    "title": "RSI mean-reversion within bull regime \u2014 oversold dips in uptrend have favorable risk/reward",
+    "tags": [
+      "rsi_14",
+      "sma_50_above_200",
+      "bb_width",
+      "vol_21d",
+      "mom_12_1"
+    ],
+    "metrics": {
+      "sharpe": 0.0,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.0
+    },
+    "session": "20260517_022412",
+    "timestamp": "2026-05-17T02:24:37.814886"
+  },
+  {
+    "id": "d637b137",
+    "type": "experiment",
+    "title": "12-month momentum with SMA50/200 regime filter outperforms buy-and-hold by selecting only trend-aligned entries",
+    "tags": [
+      "mom_12_1",
+      "mom_5d",
+      "sma_50_above_200",
+      "channel_pos_52w",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.0,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.0
+    },
+    "session": "20260517_022503",
+    "timestamp": "2026-05-17T02:25:17.489655"
+  },
+  {
+    "id": "f0219219",
+    "type": "experiment",
+    "title": "RSI mean-reversion within bull regime \u2014 oversold dips in uptrend have favorable risk/reward",
+    "tags": [
+      "rsi_14",
+      "sma_50_above_200",
+      "bb_width",
+      "vol_21d",
+      "mom_12_1"
+    ],
+    "metrics": {
+      "sharpe": 0.0,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.0
+    },
+    "session": "20260517_022503",
+    "timestamp": "2026-05-17T02:25:31.830713"
+  },
+  {
+    "id": "1dcd3154",
+    "type": "experiment",
+    "title": "12-month momentum with SMA50/200 regime filter outperforms buy-and-hold by selecting only trend-aligned entries",
+    "tags": [
+      "mom_12_1",
+      "mom_5d",
+      "sma_50_above_200",
+      "channel_pos_52w",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260517_022549",
+    "timestamp": "2026-05-17T02:26:09.099499"
+  },
+  {
+    "id": "2dd3c656",
+    "type": "experiment",
+    "title": "RSI mean-reversion within bull regime \u2014 oversold dips in uptrend have favorable risk/reward",
+    "tags": [
+      "rsi_14",
+      "sma_50_above_200",
+      "bb_width",
+      "vol_21d",
+      "mom_12_1"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260517_022549",
+    "timestamp": "2026-05-17T02:26:26.851365"
+  },
+  {
+    "id": "b664a53f",
+    "type": "experiment",
+    "title": "12-month momentum with SMA50/200 regime filter outperforms buy-and-hold by selecting only trend-aligned entries",
+    "tags": [
+      "mom_12_1",
+      "mom_5d",
+      "sma_50_above_200",
+      "channel_pos_52w",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260517_022632",
+    "timestamp": "2026-05-17T02:26:50.765317"
+  },
+  {
+    "id": "28ae22bd",
+    "type": "experiment",
+    "title": "RSI mean-reversion within bull regime \u2014 oversold dips in uptrend have favorable risk/reward",
+    "tags": [
+      "rsi_14",
+      "sma_50_above_200",
+      "bb_width",
+      "vol_21d",
+      "mom_12_1"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260517_022632",
+    "timestamp": "2026-05-17T02:27:07.179190"
+  },
+  {
+    "id": "64206eaa",
+    "type": "experiment",
+    "title": "Regime-adaptive entry: only trade when both trend (SMA50>SMA200) and vol regime (vol_21d < 25th pct) align",
+    "tags": [
+      "sma_50_above_200",
+      "sma_50_dist",
+      "vol_21d",
+      "mom_12_1",
+      "dollar_volume"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260517_022632",
+    "timestamp": "2026-05-17T02:27:20.850642"
+  },
+  {
+    "id": "52cbe1b5",
+    "type": "experiment",
+    "title": "momentum test",
+    "tags": [
+      "mom_12_1",
+      "sma_50_above_200",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.6,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.6
+    },
+    "session": "20260517_023451",
+    "timestamp": "2026-05-17T02:34:51.775787"
+  },
+  {
+    "id": "f598427c",
+    "type": "experiment",
+    "title": "unrelated test",
+    "tags": [
+      "atr_14",
+      "dollar_volume"
+    ],
+    "metrics": {
+      "sharpe": 0.3,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.3
+    },
+    "session": "20260517_023451",
+    "timestamp": "2026-05-17T02:34:51.845388"
+  },
+  {
+    "id": "56d9d637",
+    "type": "experiment",
+    "title": "exp 0",
+    "tags": [
+      "mom_12_1",
+      "sma_50_above_200",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.5,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.5
+    },
+    "session": "20260517_023451",
+    "timestamp": "2026-05-17T02:34:51.857780"
+  },
+  {
+    "id": "74e3e95c",
+    "type": "experiment",
+    "title": "exp 1",
+    "tags": [
+      "mom_12_1",
+      "sma_50_above_200",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.5,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.5
+    },
+    "session": "20260517_023451",
+    "timestamp": "2026-05-17T02:34:51.858521"
+  },
+  {
+    "id": "63bafd54",
+    "type": "experiment",
+    "title": "exp 2",
+    "tags": [
+      "mom_12_1",
+      "sma_50_above_200",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.5,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.5
+    },
+    "session": "20260517_023451",
+    "timestamp": "2026-05-17T02:34:51.859021"
+  },
+  {
+    "id": "b84b5aad",
+    "type": "experiment",
+    "title": "exp 3",
+    "tags": [
+      "mom_12_1",
+      "sma_50_above_200",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.5,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.5
+    },
+    "session": "20260517_023451",
+    "timestamp": "2026-05-17T02:34:51.859509"
+  },
+  {
+    "id": "21f7f60f",
+    "type": "experiment",
+    "title": "exp 4",
+    "tags": [
+      "mom_12_1",
+      "sma_50_above_200",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.5,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.5
+    },
+    "session": "20260517_023451",
+    "timestamp": "2026-05-17T02:34:51.860038"
+  },
+  {
+    "id": "2e19deb3",
+    "type": "experiment",
+    "title": "momentum test",
+    "tags": [
+      "mom_12_1",
+      "sma_50_above_200",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.6,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.6
+    },
+    "session": "20260517_023456",
+    "timestamp": "2026-05-17T02:34:56.275275"
+  },
+  {
+    "id": "1ee91df3",
+    "type": "experiment",
+    "title": "momentum test",
+    "tags": [
+      "mom_12_1",
+      "sma_50_above_200",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.6,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.6
+    },
+    "session": "20260517_023513",
+    "timestamp": "2026-05-17T02:35:13.089507"
+  },
+  {
+    "id": "12739646",
+    "type": "experiment",
+    "title": "12-month momentum with SMA50/200 regime filter outperforms buy-and-hold by selecting only trend-aligned entries",
+    "tags": [
+      "mom_12_1",
+      "mom_5d",
+      "sma_50_above_200",
+      "channel_pos_52w",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260517_212413",
+    "timestamp": "2026-05-17T21:24:30.058428+00:00"
+  },
+  {
+    "id": "b8783d84",
+    "type": "experiment",
+    "title": "RSI mean-reversion within bull regime \u2014 oversold dips in uptrend have favorable risk/reward",
+    "tags": [
+      "rsi_14",
+      "sma_50_above_200",
+      "bb_width",
+      "vol_21d",
+      "mom_12_1"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260517_212413",
+    "timestamp": "2026-05-17T21:24:47.632525+00:00"
+  },
+  {
+    "id": "05ddfdc3",
+    "type": "experiment",
+    "title": "Regime-adaptive entry: only trade when both trend (SMA50>SMA200) and vol regime (vol_21d < 25th pct) align",
+    "tags": [
+      "sma_50_above_200",
+      "sma_50_dist",
+      "vol_21d",
+      "mom_12_1",
+      "dollar_volume"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260517_212413",
+    "timestamp": "2026-05-17T21:25:04.510222+00:00"
+  },
+  {
+    "id": "2a910cb4",
+    "type": "experiment",
+    "title": "12-month momentum with SMA50/200 regime filter outperforms buy-and-hold by selecting only trend-aligned entries",
+    "tags": [
+      "mom_12_1",
+      "mom_5d",
+      "sma_50_above_200",
+      "channel_pos_52w",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260518_142132",
+    "timestamp": "2026-05-18T14:21:46.930171+00:00"
+  },
+  {
+    "id": "3a1709c9",
+    "type": "experiment",
+    "title": "RSI mean-reversion within bull regime \u2014 oversold dips in uptrend have favorable risk/reward",
+    "tags": [
+      "rsi_14",
+      "sma_50_above_200",
+      "bb_width",
+      "vol_21d",
+      "mom_12_1"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260518_142132",
+    "timestamp": "2026-05-18T14:22:01.152984+00:00"
+  },
+  {
+    "id": "0eda533c",
+    "type": "experiment",
+    "title": "Regime-adaptive entry: only trade when both trend (SMA50>SMA200) and vol regime (vol_21d < 25th pct) align",
+    "tags": [
+      "sma_50_above_200",
+      "sma_50_dist",
+      "vol_21d",
+      "mom_12_1",
+      "dollar_volume"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260518_142132",
+    "timestamp": "2026-05-18T14:22:16.875308+00:00"
+  },
+  {
+    "id": "516570bc",
+    "type": "experiment",
+    "title": "12-month momentum with SMA50/200 regime filter outperforms buy-and-hold by selecting only trend-aligned entries",
+    "tags": [
+      "mom_12_1",
+      "mom_5d",
+      "sma_50_above_200",
+      "channel_pos_52w",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260518_142502",
+    "timestamp": "2026-05-18T14:25:19.893587+00:00"
+  },
+  {
+    "id": "99e5c9f8",
+    "type": "experiment",
+    "title": "RSI mean-reversion within bull regime \u2014 oversold dips in uptrend have favorable risk/reward",
+    "tags": [
+      "rsi_14",
+      "sma_50_above_200",
+      "bb_width",
+      "vol_21d",
+      "mom_12_1"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260518_142502",
+    "timestamp": "2026-05-18T14:25:35.207857+00:00"
+  },
+  {
+    "id": "f88c7eff",
+    "type": "experiment",
+    "title": "Regime-adaptive entry: only trade when both trend (SMA50>SMA200) and vol regime (vol_21d < 25th pct) align",
+    "tags": [
+      "sma_50_above_200",
+      "sma_50_dist",
+      "vol_21d",
+      "mom_12_1",
+      "dollar_volume"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260518_142502",
+    "timestamp": "2026-05-18T14:25:48.730031+00:00"
+  },
+  {
+    "id": "38d01a6d",
+    "type": "experiment",
+    "title": "12-month momentum with SMA50/200 regime filter outperforms buy-and-hold by selecting only trend-aligned entries",
+    "tags": [
+      "mom_12_1",
+      "mom_5d",
+      "sma_50_above_200",
+      "channel_pos_52w",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260518_142918",
+    "timestamp": "2026-05-18T14:29:33.067903+00:00"
+  },
+  {
+    "id": "01e694ba",
+    "type": "experiment",
+    "title": "RSI mean-reversion within bull regime \u2014 oversold dips in uptrend have favorable risk/reward",
+    "tags": [
+      "rsi_14",
+      "sma_50_above_200",
+      "bb_width",
+      "vol_21d",
+      "mom_12_1"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260518_142918",
+    "timestamp": "2026-05-18T14:29:46.056089+00:00"
+  },
+  {
+    "id": "1702322b",
+    "type": "experiment",
+    "title": "Regime-adaptive entry: only trade when both trend (SMA50>SMA200) and vol regime (vol_21d < 25th pct) align",
+    "tags": [
+      "sma_50_above_200",
+      "sma_50_dist",
+      "vol_21d",
+      "mom_12_1",
+      "dollar_volume"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260518_142918",
+    "timestamp": "2026-05-18T14:29:58.837479+00:00"
+  },
+  {
+    "id": "4a960907",
+    "type": "experiment",
+    "title": "12-month momentum with SMA50/200 regime filter outperforms buy-and-hold by selecting only trend-aligned entries",
+    "tags": [
+      "mom_12_1",
+      "mom_5d",
+      "sma_50_above_200",
+      "channel_pos_52w",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260518_143051",
+    "timestamp": "2026-05-18T14:31:05.392294+00:00"
+  },
+  {
+    "id": "2a4e9d1f",
+    "type": "experiment",
+    "title": "RSI mean-reversion within bull regime \u2014 oversold dips in uptrend have favorable risk/reward",
+    "tags": [
+      "rsi_14",
+      "sma_50_above_200",
+      "bb_width",
+      "vol_21d",
+      "mom_12_1"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260518_143051",
+    "timestamp": "2026-05-18T14:31:19.231240+00:00"
+  },
+  {
+    "id": "e40b917f",
+    "type": "experiment",
+    "title": "12-month momentum with SMA50/200 regime filter outperforms buy-and-hold by selecting only trend-aligned entries",
+    "tags": [
+      "mom_12_1",
+      "mom_5d",
+      "sma_50_above_200",
+      "channel_pos_52w",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260518_170911",
+    "timestamp": "2026-05-18T17:09:26.291857+00:00"
+  },
+  {
+    "id": "b4a2e9cf",
+    "type": "experiment",
+    "title": "RSI oversold dips within a bull trend offer high-probability bounce entries",
+    "tags": [
+      "rsi_14",
+      "sma_50_above_200",
+      "bb_width",
+      "vol_21d",
+      "mom_12_1"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260518_170911",
+    "timestamp": "2026-05-18T17:09:39.516638+00:00"
+  },
+  {
+    "id": "6670fafa",
+    "type": "experiment",
+    "title": "Selective entry when trend and low-volatility conditions both align produces cleaner signals",
+    "tags": [
+      "sma_50_above_200",
+      "sma_50_dist",
+      "vol_21d",
+      "mom_12_1",
+      "dollar_volume"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260518_170911",
+    "timestamp": "2026-05-18T17:09:52.560505+00:00"
+  },
+  {
+    "id": "2a3b5bec",
+    "type": "experiment",
+    "title": "12-month momentum with SMA50/200 regime filter outperforms buy-and-hold by selecting only trend-aligned entries",
+    "tags": [
+      "mom_12_1",
+      "mom_5d",
+      "sma_50_above_200",
+      "channel_pos_52w",
+      "vol_21d"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260518_170911",
+    "timestamp": "2026-05-18T17:10:05.458321+00:00"
+  },
+  {
+    "id": "c367f613",
+    "type": "experiment",
+    "title": "RSI oversold dips within a bull trend offer high-probability bounce entries",
+    "tags": [
+      "rsi_14",
+      "sma_50_above_200",
+      "bb_width",
+      "vol_21d",
+      "mom_12_1"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260518_170911",
+    "timestamp": "2026-05-18T17:10:18.242270+00:00"
+  },
+  {
+    "id": "f4155ef3",
+    "type": "experiment",
+    "title": "Selective entry when trend and low-volatility conditions both align produces cleaner signals",
+    "tags": [
+      "sma_50_above_200",
+      "sma_50_dist",
+      "vol_21d",
+      "mom_12_1",
+      "dollar_volume"
+    ],
+    "metrics": {
+      "sharpe": 0.581,
+      "ann_return": 0.0,
+      "max_dd": 0.0,
+      "oos_sharpe": 0.581
+    },
+    "session": "20260518_170911",
+    "timestamp": "2026-05-18T17:10:31.313951+00:00"
+  }
+]

@@ -1,0 +1,129 @@
+shape: sequence_diagram
+
+title: |md
+  ## Figure 4 -- Multi-Agent Research Loop: UML Sequence Diagram
+|
+
+# Participants (declaration order = column order)
+bandit: {
+  label: "Thompson\nBandit"
+  style.fill: "#ede9fe"
+  style.stroke: "#5b21b6"
+  style.font-color: "#5b21b6"
+  style.bold: true
+}
+
+strategist: {
+  label: "Strategist\n(Claude)"
+  style.fill: "#dbeafe"
+  style.stroke: "#1d4ed8"
+  style.font-color: "#1d4ed8"
+  style.bold: true
+}
+
+analyst: {
+  label: "Analyst\n(Grok / xAI)"
+  style.fill: "#ffedd5"
+  style.stroke: "#c2410c"
+  style.font-color: "#c2410c"
+  style.bold: true
+}
+
+coder: {
+  label: "Coder\n(Claude)"
+  style.fill: "#d1fae5"
+  style.stroke: "#065f46"
+  style.font-color: "#065f46"
+  style.bold: true
+}
+
+executor: {
+  label: "Executor +\nReviewer"
+  style.fill: "#fef3c7"
+  style.stroke: "#b45309"
+  style.font-color: "#b45309"
+  style.bold: true
+}
+
+pipeline: {
+  label: "Core ML\nPipeline"
+  style.fill: "#eff6ff"
+  style.stroke: "#2563eb"
+  style.font-color: "#2563eb"
+  style.bold: true
+}
+
+kb: {
+  label: "Knowledge\nBase"
+  style.fill: "#f5f3ff"
+  style.stroke: "#7c3aed"
+  style.font-color: "#5b21b6"
+  style.bold: true
+}
+
+# --- Iteration Start ---
+bandit -> strategist: "0: select_arm() -> experiment archetype" {
+  style.stroke: "#5b21b6"
+  style.bold: true
+}
+
+# --- Experiment Design ---
+strategist -> analyst: "1: market_context_request()" {
+  style.stroke: "#c2410c"
+}
+
+analyst -> strategist: "2: regime + macro context  (return)" {
+  style.stroke: "#c2410c"
+  style.stroke-dash: 5
+}
+
+strategist -> kb: "3a: retrieve_context()" {
+  style.stroke: "#7c3aed"
+  style.stroke-dash: 5
+}
+
+strategist -> coder: "3b: propose_experiment() -> config + hypothesis" {
+  style.stroke: "#1d4ed8"
+  style.bold: true
+}
+
+strategist -> coder: "4: generate_factor() -> Python code" {
+  style.stroke: "#065f46"
+}
+
+# --- Evaluation ---
+coder -> executor: "5: validate_ast() + submit code" {
+  style.stroke: "#b45309"
+}
+
+executor -> pipeline: "5a: train + backtest (tool call)" {
+  style.stroke: "#2563eb"
+  style.stroke-dash: 5
+  style.bold: true
+}
+
+pipeline -> executor: "5b: BacktestResult  (Sharpe, DD, trades)" {
+  style.stroke: "#2563eb"
+  style.stroke-dash: 5
+}
+
+executor -> strategist: "6: BacktestResult  (Sharpe, DD, trades)" {
+  style.stroke: "#b45309"
+  style.stroke-dash: 5
+}
+
+strategist -> executor: "7: evaluate_result() -> PROMOTE / ITERATE / REJECT" {
+  style.stroke: "#1d4ed8"
+  style.bold: true
+}
+
+# --- State Update ---
+executor -> bandit: "8: update_arm(reward)" {
+  style.stroke: "#5b21b6"
+  style.stroke-dash: 5
+}
+
+strategist -> kb: "9: save_to_kb() -> session_report()" {
+  style.stroke: "#7c3aed"
+  style.bold: true
+}

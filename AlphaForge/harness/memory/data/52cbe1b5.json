@@ -1,0 +1,32 @@
+{
+  "id": "52cbe1b5",
+  "type": "experiment",
+  "title": "momentum test",
+  "tags": [
+    "mom_12_1",
+    "sma_50_above_200",
+    "vol_21d"
+  ],
+  "metrics": {
+    "sharpe": 0.6,
+    "ann_return": 0.0,
+    "max_dd": 0.0,
+    "oos_sharpe": 0.6
+  },
+  "session": "20260517_023451",
+  "timestamp": "2026-05-17T02:34:51.775787",
+  "body": {
+    "hypothesis": "momentum test",
+    "config": {
+      "features": [
+        "mom_12_1",
+        "sma_50_above_200",
+        "vol_21d"
+      ]
+    },
+    "results": {
+      "sharpe": 0.6
+    },
+    "verdict": "MODERATE"
+  }
+}

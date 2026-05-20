@@ -1,0 +1,274 @@
+direction: down
+
+title: |md
+  ## Figure 1 -- AlphaForge System Architecture
+|
+
+# --- Entry Points ---
+entry: "Entry Points" {
+  style.fill: "#f8fafc"
+  style.stroke: "#94a3b8"
+  style.stroke-width: 2
+  style.border-radius: 8
+  style.font-size: 13
+  direction: right
+
+  main: {
+    label: "main.py\n(Core ML CLI)"
+    style.fill: "#dbeafe"
+    style.stroke: "#1d4ed8"
+    style.stroke-width: 2
+    style.border-radius: 6
+    style.font-size: 12
+    style.bold: true
+    style.font-color: "#1d4ed8"
+  }
+
+  harness_cli: {
+    label: "harness_main.py\n(AI Harness CLI)"
+    style.fill: "#ede9fe"
+    style.stroke: "#5b21b6"
+    style.stroke-width: 2
+    style.border-radius: 6
+    style.font-size: 12
+    style.bold: true
+    style.font-color: "#5b21b6"
+  }
+}
+
+# --- AI Harness ---
+harness: "AI Harness" {
+  style.fill: "#faf5ff"
+  style.stroke: "#7c3aed"
+  style.stroke-width: 2
+  style.border-radius: 8
+  style.font-size: 13
+
+  agents: "Agents" {
+    style.fill: "#f5f3ff"
+    style.stroke: "#a78bfa"
+    style.stroke-dash: 4
+    style.border-radius: 6
+    direction: right
+
+    strategist: {
+      label: "Strategist\n(Claude)"
+      style.fill: "#ede9fe"
+      style.stroke: "#5b21b6"
+      style.stroke-width: 2
+      style.border-radius: 6
+      style.font-color: "#5b21b6"
+      style.bold: true
+    }
+    analyst: {
+      label: "Analyst\n(Grok / xAI)"
+      style.fill: "#ffedd5"
+      style.stroke: "#c2410c"
+      style.stroke-width: 2
+      style.border-radius: 6
+      style.font-color: "#c2410c"
+      style.bold: true
+    }
+    coder: {
+      label: "Coder\n(Claude)"
+      style.fill: "#ede9fe"
+      style.stroke: "#5b21b6"
+      style.stroke-width: 2
+      style.border-radius: 6
+      style.font-color: "#5b21b6"
+      style.bold: true
+    }
+    reviewer: {
+      label: "Reviewer\n(Claude)"
+      style.fill: "#ede9fe"
+      style.stroke: "#5b21b6"
+      style.stroke-width: 2
+      style.border-radius: 6
+      style.font-color: "#5b21b6"
+      style.bold: true
+    }
+  }
+
+  orch: {
+    label: "AlphaHarness Orchestrator"
+    style.fill: "#e9d5ff"
+    style.stroke: "#5b21b6"
+    style.stroke-width: 3
+    style.border-radius: 6
+    style.font-size: 13
+    style.bold: true
+    style.font-color: "#3b0764"
+  }
+
+  bandit: {
+    label: "Thompson Bandit\n(arm selection)"
+    style.fill: "#f3e8ff"
+    style.stroke: "#7c3aed"
+    style.stroke-width: 2
+    style.border-radius: 6
+    style.font-color: "#5b21b6"
+  }
+
+  kb: {
+    label: "Knowledge Base\n(harness/memory/)"
+    style.fill: "#f5f3ff"
+    style.stroke: "#7c3aed"
+    style.stroke-width: 2
+    style.border-radius: 6
+    style.font-color: "#5b21b6"
+  }
+
+  agents.strategist -> orch: {style.stroke: "#5b21b6"; style.stroke-width: 2}
+  agents.analyst -> orch: {style.stroke: "#c2410c"; style.stroke-width: 2}
+  agents.coder -> orch: {style.stroke: "#5b21b6"; style.stroke-width: 2}
+  agents.reviewer -> orch: {style.stroke: "#5b21b6"; style.stroke-width: 2}
+  bandit -> orch: "select_arm()" {style.stroke: "#7c3aed"; style.stroke-width: 2}
+  orch -> kb: "save / retrieve" {style.stroke: "#7c3aed"; style.stroke-dash: 4; style.stroke-width: 2}
+}
+
+# --- Core ML Pipeline ---
+pipeline: "Core ML Pipeline" {
+  style.fill: "#eff6ff"
+  style.stroke: "#2563eb"
+  style.stroke-width: 2
+  style.border-radius: 8
+  style.font-size: 13
+  direction: right
+
+  ingest: {
+    label: "ingest"
+    style.fill: "#dbeafe"
+    style.stroke: "#1d4ed8"
+    style.stroke-width: 2
+    style.border-radius: 6
+    style.font-color: "#1d4ed8"
+    style.bold: true
+  }
+  features: {
+    label: "features\n(250+ -> 85 cols)"
+    style.fill: "#d1fae5"
+    style.stroke: "#065f46"
+    style.stroke-width: 2
+    style.border-radius: 6
+    style.font-color: "#065f46"
+    style.bold: true
+  }
+  train: {
+    label: "train\n(XGBoost x8)"
+    style.fill: "#d1fae5"
+    style.stroke: "#065f46"
+    style.stroke-width: 2
+    style.border-radius: 6
+    style.font-color: "#065f46"
+    style.bold: true
+  }
+  backtest: {
+    label: "backtest\n(NAV, DD, Sharpe)"
+    style.fill: "#dbeafe"
+    style.stroke: "#1d4ed8"
+    style.stroke-width: 2
+    style.border-radius: 6
+    style.font-color: "#1d4ed8"
+    style.bold: true
+  }
+  validate: {
+    label: "validate\n(OOS + DSR gate)"
+    style.fill: "#cffafe"
+    style.stroke: "#0e7490"
+    style.stroke-width: 2
+    style.border-radius: 6
+    style.font-color: "#0e7490"
+    style.bold: true
+  }
+  report: {
+    label: "report\n(PDF / JSON)"
+    style.fill: "#fef3c7"
+    style.stroke: "#b45309"
+    style.stroke-width: 2
+    style.border-radius: 6
+    style.font-color: "#b45309"
+    style.bold: true
+  }
+
+  ingest -> features: {style.stroke: "#475569"; style.stroke-width: 2}
+  features -> train: {style.stroke: "#475569"; style.stroke-width: 2}
+  train -> backtest: {style.stroke: "#475569"; style.stroke-width: 2}
+  backtest -> validate: {style.stroke: "#475569"; style.stroke-width: 2}
+  validate -> report: {style.stroke: "#475569"; style.stroke-width: 2}
+}
+
+# --- Infrastructure ---
+infra: "Infrastructure  (shared data stores)" {
+  style.fill: "#f0fdf4"
+  style.stroke: "#059669"
+  style.stroke-width: 2
+  style.border-radius: 8
+  style.font-size: 13
+  direction: right
+
+  data: {
+    label: "data/\n(Parquet cache)"
+    style.fill: "#d1fae5"
+    style.stroke: "#059669"
+    style.stroke-width: 2
+    style.border-radius: 6
+    style.font-color: "#065f46"
+    style.bold: true
+  }
+  models: {
+    label: "models/artifacts/\n(joblib + JSON)"
+    style.fill: "#d1fae5"
+    style.stroke: "#059669"
+    style.stroke-width: 2
+    style.border-radius: 6
+    style.font-color: "#065f46"
+    style.bold: true
+  }
+  memory: {
+    label: "harness/memory/\n(KB + bandit state)"
+    style.fill: "#ede9fe"
+    style.stroke: "#5b21b6"
+    style.stroke-width: 2
+    style.border-radius: 6
+    style.font-color: "#5b21b6"
+    style.bold: true
+  }
+  logs: {
+    label: "logs/ + audit/\nconfig.yaml"
+    style.fill: "#fef3c7"
+    style.stroke: "#b45309"
+    style.stroke-width: 2
+    style.border-radius: 6
+    style.font-color: "#b45309"
+    style.bold: true
+  }
+}
+
+# --- Cross-component connections ---
+entry.main -> pipeline.ingest: "CLI invoke" {
+  style.stroke: "#1d4ed8"
+  style.stroke-width: 2
+  style.font-color: "#1d4ed8"
+  style.font-size: 11
+}
+
+entry.harness_cli -> harness.orch: "CLI invoke" {
+  style.stroke: "#5b21b6"
+  style.stroke-width: 2
+  style.font-color: "#5b21b6"
+  style.font-size: 11
+}
+
+harness.orch -> pipeline.backtest: "tool calls\n(train + backtest)" {
+  style.stroke: "#5b21b6"
+  style.stroke-dash: 5
+  style.stroke-width: 2
+  style.font-color: "#5b21b6"
+  style.font-size: 11
+  style.bold: true
+}
+
+pipeline.ingest -> infra.data: {style.stroke: "#94a3b8"; style.stroke-dash: 4; style.stroke-width: 2}
+pipeline.train -> infra.models: {style.stroke: "#94a3b8"; style.stroke-dash: 4; style.stroke-width: 2}
+harness.kb -> infra.memory: {style.stroke: "#7c3aed"; style.stroke-dash: 4; style.stroke-width: 2}
+pipeline.report -> infra.logs: {style.stroke: "#94a3b8"; style.stroke-dash: 4; style.stroke-width: 2}

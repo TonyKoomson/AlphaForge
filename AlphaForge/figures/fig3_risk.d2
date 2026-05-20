@@ -1,0 +1,153 @@
+direction: down
+
+title: |md
+  ## Figure 3 -- Risk Management Signal Pipeline
+|
+
+raw: {
+  label: "Raw signal\n(proba from model)"
+  shape: rectangle
+  style.fill: "#d1fae5"
+  style.stroke: "#065f46"
+  style.stroke-width: 2
+  style.border-radius: 8
+  style.font-color: "#065f46"
+  style.bold: true
+  style.font-size: 12
+}
+
+conf_gate: {
+  label: "proba >= min_confidence?\n(regime-adaptive threshold)"
+  shape: diamond
+  style.fill: "#fef3c7"
+  style.stroke: "#b45309"
+  style.stroke-width: 2
+  style.font-color: "#b45309"
+  style.bold: true
+  style.font-size: 12
+}
+
+flat1: {
+  label: "FLAT\n(signal rejected)"
+  shape: rectangle
+  style.fill: "#fee2e2"
+  style.stroke: "#991b1b"
+  style.stroke-width: 2
+  style.border-radius: 6
+  style.font-color: "#991b1b"
+  style.bold: true
+}
+
+tail_gate: {
+  label: "TailRiskManager\nvol z-score > 2.5?"
+  shape: diamond
+  style.fill: "#fef3c7"
+  style.stroke: "#b45309"
+  style.stroke-width: 2
+  style.font-color: "#b45309"
+  style.bold: true
+  style.font-size: 12
+}
+
+flat2: {
+  label: "FLAT\n(tail risk active)"
+  shape: rectangle
+  style.fill: "#fee2e2"
+  style.stroke: "#991b1b"
+  style.stroke-width: 2
+  style.border-radius: 6
+  style.font-color: "#991b1b"
+  style.bold: true
+}
+
+dd_gate: {
+  label: "DrawdownController\nDD tier >= 3  (DD > 20%)?"
+  shape: diamond
+  style.fill: "#fef3c7"
+  style.stroke: "#b45309"
+  style.stroke-width: 2
+  style.font-color: "#b45309"
+  style.bold: true
+  style.font-size: 12
+}
+
+reduce: {
+  label: "REDUCE / FLAT\n(drawdown protection)"
+  shape: rectangle
+  style.fill: "#fee2e2"
+  style.stroke: "#991b1b"
+  style.stroke-width: 2
+  style.border-radius: 6
+  style.font-color: "#991b1b"
+  style.bold: true
+}
+
+sizer: {
+  label: "PositionSizer\nvol-target 15%  +  Kelly 1/4  +  fixed-risk"
+  shape: rectangle
+  style.fill: "#d1fae5"
+  style.stroke: "#065f46"
+  style.stroke-width: 2
+  style.border-radius: 8
+  style.font-color: "#065f46"
+  style.bold: true
+  style.font-size: 12
+}
+
+stop_gate: {
+  label: "Stop-loss or trailing stop\ntriggered?"
+  shape: diamond
+  style.fill: "#fef3c7"
+  style.stroke: "#b45309"
+  style.stroke-width: 2
+  style.font-color: "#b45309"
+  style.bold: true
+  style.font-size: 12
+}
+
+close_pos: {
+  label: "CLOSE position\n(exit trade)"
+  shape: rectangle
+  style.fill: "#fee2e2"
+  style.stroke: "#991b1b"
+  style.stroke-width: 2
+  style.border-radius: 6
+  style.font-color: "#991b1b"
+  style.bold: true
+}
+
+cost: {
+  label: "CostModel\ncommission 10bps  +  slippage 5bps  +  spread 2bps"
+  shape: rectangle
+  style.fill: "#d1fae5"
+  style.stroke: "#065f46"
+  style.stroke-width: 2
+  style.border-radius: 8
+  style.font-color: "#065f46"
+  style.bold: true
+  style.font-size: 12
+}
+
+execute: {
+  label: "Fill order -> update NAV\n(BacktestEngine / PaperTrader)"
+  shape: rectangle
+  style.fill: "#dbeafe"
+  style.stroke: "#1d4ed8"
+  style.stroke-width: 3
+  style.border-radius: 8
+  style.font-color: "#1d4ed8"
+  style.bold: true
+  style.font-size: 13
+}
+
+raw -> conf_gate: {style.stroke: "#475569"; style.stroke-width: 2}
+conf_gate -> flat1: "NO\n(below threshold)" {style.stroke: "#991b1b"; style.stroke-width: 2; style.font-color: "#991b1b"; style.bold: true}
+conf_gate -> tail_gate: "YES\n(signal passes)" {style.stroke: "#065f46"; style.stroke-width: 2; style.font-color: "#065f46"; style.bold: true}
+tail_gate -> flat2: "YES\n(vol spike)" {style.stroke: "#991b1b"; style.stroke-width: 2; style.font-color: "#991b1b"; style.bold: true}
+tail_gate -> dd_gate: "NO\n(vol normal)" {style.stroke: "#065f46"; style.stroke-width: 2; style.font-color: "#065f46"; style.bold: true}
+dd_gate -> reduce: "YES\n(drawdown too deep)" {style.stroke: "#991b1b"; style.stroke-width: 2; style.font-color: "#991b1b"; style.bold: true}
+dd_gate -> sizer: "NO\n(drawdown OK)" {style.stroke: "#065f46"; style.stroke-width: 2; style.font-color: "#065f46"; style.bold: true}
+sizer -> stop_gate: {style.stroke: "#475569"; style.stroke-width: 2}
+stop_gate -> close_pos: "YES\n(stop hit)" {style.stroke: "#991b1b"; style.stroke-width: 2; style.font-color: "#991b1b"; style.bold: true}
+stop_gate -> cost: "NO\n(position continues)" {style.stroke: "#065f46"; style.stroke-width: 2; style.font-color: "#065f46"; style.bold: true}
+cost -> execute: {style.stroke: "#1d4ed8"; style.stroke-width: 2}
